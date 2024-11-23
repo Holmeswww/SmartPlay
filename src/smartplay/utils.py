@@ -20,9 +20,10 @@ class HistoryTracker:
         if len(self.info) == 0:
             return ""
         game_step = self.game_step if game_step is None else game_step
-        result = "Most recent {} steps of the player's in-game observation:\n\n".format(len(self.info))
+        # result = "Most recent {} steps of the player's in-game observation:\n\n".format(len(self.info))
+        result = ""
         for i, info in enumerate(self.info):
-            result += "Player Observation Step {}:\n".format(game_step - len(self.info) + i)
+            result += "## Step {}:\n".format(game_step - len(self.info) + i)
             result += info["obs"] + "\n\n"
         return result.strip()
     
@@ -31,4 +32,4 @@ class HistoryTracker:
 
 
 def describe_act(action_list):
-    return "List of all actions:\n" + "\n".join(["{}. {}".format(i+1, s) for i,s in enumerate(action_list)])
+    return "Potentially allowed actions:\n" + "\n".join(["- {}".format(s) for _,s in enumerate(action_list)])

@@ -129,9 +129,9 @@ with top on the right and bottom on the left
     def describe_state(self, state, action=None):
         index = ['A', 'B', 'C']
         if action is not None:
-            result = "You tried to {}. Current configuration:".format(self.action_list[action].lower())
+            result = "You tried to {}.\nConfiguration:".format(self.action_list[action].lower())
         else:
-            result = "Current configuration:"
+            result = "Configuration:"
         for i in range(3):
             result += "\n- {}: |bottom, {}, top|".format(index[i], state['state'][i][::-1])
         return result.strip()

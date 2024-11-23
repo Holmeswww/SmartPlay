@@ -11,7 +11,7 @@ games = []
 env_list = []
 
 
-_exclude_path = ['__pycache__', 'utils', 'tests', 'eval', 'example_game']
+_exclude_path = ['__pycache__', 'utils', 'tests', 'eval', 'example_game', 'minedojo']
 _module_dir = os.path.dirname(__file__)
 
 

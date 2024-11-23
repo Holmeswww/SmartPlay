@@ -22,11 +22,11 @@ directions = ['front', 'right', 'back', 'left']
 def describe_inventory(info):
     result = ""
     
-    status_str = "Your status:\n{}".format("\n".join(["- {}: {}/9".format(v, info['inventory'][v]) for v in vitals]))
+    status_str = "Status:\n{}".format("\n".join(["- {}: {}/9".format(v, info['inventory'][v]) for v in vitals]))
     result += status_str + "\n\n"
     
     inventory_str = "\n".join(["- {}: {}".format(i, num) for i,num in info['inventory'].items() if i not in vitals and num!=0])
-    inventory_str = "Your inventory:\n{}".format(inventory_str) if inventory_str else "You have nothing in your inventory."
+    inventory_str = "Inventory:\n{}".format(inventory_str) if inventory_str else "Inventory: Empty"
     result += inventory_str #+ "\n\n"
     
     return result.strip()
@@ -149,6 +149,10 @@ class Crafter(Env):
         CTXT = CTXT.replace("Move Down: Flat ground below the agent.", "Move South: Flat ground south of the agent.")
         CTXT = CTXT.replace("Move Left: Flat ground left to the agent.", "Move West: Flat ground west of the agent.")
         CTXT = CTXT.replace("Move Right: Flat ground right to the agent.", "Move East: Flat ground east of the agent.")
+        CTXT = CTXT.replace("Write all actions as a numbered list. For each action, list its requirements.", "Actions and their requirements:")
+        CTXT = CTXT.replace("Do: Facing creature or material; have necessary tool.", "Do (Interact): Facing creature or material; have necessary tool.")
+
+        CTXT += "\n\nPotentially allowed actions:\n"+"\n".join(["- {}".format(x) for x in self.action_list])
         self.desc = CTXT
         self.score_tracker = 0
         super().__init__(area, view, size, reward, length, seed)

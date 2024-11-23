@@ -50,6 +50,7 @@ Paper covers rock (Paper wins, score {})
 If you lose, your score is the negative of the winner's score.
 If both players choose the same option, it's a draw (score 0).
 Your goal is to maximize your score.
+Note: Your opponent follows a fixed strategy.
 
 {}
 """.strip().format(*self.reward, describe_act(self.action_list))
